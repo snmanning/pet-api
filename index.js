@@ -1,5 +1,9 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const server = express();
+
+// set up environment variables
+dotenv.config();
 
 // set up the port
 const port = process.env.PORT || 8008;
