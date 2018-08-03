@@ -54,8 +54,18 @@ server.put('/pets/:id', (req, res) => {
     res.send(`updating ${req.params.id} pet`);
 });
 // delete one special pet
-server.delete('/pets/:id', (req, res) => {
-    res.send(`deleting ${req.params.id} pet`);
+server.delete('/pets/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await Pet.findByIdAndRemove(id);
+        res.status(200).json({
+            msg: "yaaaayyyy!! destruction"
+        });
+    } catch (err) {
+        res.status(500).json({
+            msg: "broked"
+        });
+    }
 });
 
 
