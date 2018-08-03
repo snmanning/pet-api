@@ -26,14 +26,24 @@ server.get('/pets', async (req, res) => {
             "pets": pets
         })
     } catch(err) {
-        res.status(500).jason({
+        res.status(500).json({
             msg: "stuff done broke"
         });
     }
 });
 // get one special pet by id
-server.get('/pets/:id', (req, res) => {
-    res.send(`get ${req.params.id} pet`);
+server.get('/pets/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const pets = await Pet.find({ _id: id });
+        res.status(200).json({
+            pets: pets
+        })
+    } catch (err) {
+        res.status(500).json({
+            msg: 'Stuff still broke'
+        });
+    }
 });
 // create a new pet
 server.post('/pets', (req, res) => {
