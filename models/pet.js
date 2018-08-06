@@ -9,25 +9,25 @@ const petSchema = new Schema({
     owner: {
         type: String,
         required: true,
-    },
+        },
     petType: {
         type: String,
         enum: ['cat', 'dog'],
         required: true,
         lowercase: true,
         trim: true
-    } ,
+        },
     age: {
         type: Number,
         min: 0,
         max: 30,
         required: true
-    },
+        },
     createdAt: {
         type: Date,
         required: true,
         default: Date.now
-    }
+        }
     });
 
 const Pet = mongoose.model('Pet', petSchema);
