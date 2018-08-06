@@ -22,7 +22,7 @@ server.use(bodyParser.json()); //accept json data
 server.use(bodyParser.urlencoded({ extended: true })); //accept html form data
 
 // models
-const Pet = mongoose.model('Pet', { name : String, owner: String });
+const Pet = require('./models/pet');
 
 // routes
 // get all pets
@@ -33,6 +33,7 @@ server.get('/pets', async (req, res) => {
             "pets": pets
         })
     } catch(err) {
+        console.log(err);
         res.status(500).json({
             msg: "stuff done broke"
         });
